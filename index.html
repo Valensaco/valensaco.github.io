@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentin Rivadeo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A1F44;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 31, 68, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #10B981;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav ul a:hover {
+            color: #10B981;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #0A1F44 0%, #1E293B 100%);
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid #10B981;
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            color: #10B981;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #10B981;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #10B981;
+            color: #10B981;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #10B981;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 3px;
+            background: #10B981;
+            margin-bottom: 2.5rem;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .about-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .highlight-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            border-left: 3px solid #10B981;
+        }
+
+        .highlight-card h4 {
+            font-size: 0.85rem;
+            color: #10B981;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .highlight-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: #10B981;
+        }
+
+        .project-card.coming-soon {
+            opacity: 0.6;
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-badge.soon {
+            background: #F59E0B;
+        }
+
+        .project-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .tech-tag {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10B981;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .project-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .project-links a:hover {
+            color: #10B981;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .skill-category h4 {
+            color: #10B981;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .skill-list li {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list li::before {
+            content: "▸";
+            color: #10B981;
+        }
+
+        /* Contact */
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 0.8rem 1.5rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: border-color 0.2s, color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-link:hover {
+            border-color: #10B981;
+            color: #10B981;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            nav ul { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">VR</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-content">
+            <img src="photo.jpg" alt="Valentin Rivadeo" class="profile-photo">
+            <h1>Valentin <span>Rivadeo</span></h1>
+            <p class="tagline">Cybersecurity graduate heading into FinTech — interested in how security and machine learning apply to financial systems. Currently pursuing my MS in FinTech at UT Dallas.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">View Projects</a>
+                <a href="https://www.linkedin.com/in/vrivadeo" target="_blank" class="btn-secondary">LinkedIn</a>
+                <a href="https://github.com/Valensaco" target="_blank" class="btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+        <p class="section-title">About</p>
+        <div class="section-divider"></div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I have a background in cybersecurity and networking — CCNA certified, with hands-on experience in cloud security, Python, and network infrastructure. I am now applying that foundation to financial technology, where security and data are equally critical.</p>
+                <br>
+                <p>I built my first production ML system — a credit risk platform — to understand how machine learning models work in a regulated financial environment. The project involved avoiding data leakage, implementing fairness analysis under ECOA requirements, and deploying a full monitoring system.</p>
+                <br>
+                <p>I competed on the Collin College Men's Tennis Team nationally while maintaining a 3.8 GPA — which taught me how to perform under pressure and manage competing priorities.</p>
+            </div>
+            <div class="about-highlights">
+                <div class="highlight-card">
+                    <h4>Education</h4>
+                    <p>MS FinTech — UT Dallas (incoming)<br>BS Cybersecurity — Collin College, Magna Cum Laude</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Certification</h4>
+                    <p>Cisco Certified Network Associate (CCNA)</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Languages</h4>
+                    <p>English (Fluent) • Spanish (Fluent)</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Location</h4>
+                    <p>Plano, TX — Open to DFW internships</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <p class="section-title">Projects</p>
+        <div class="section-divider"></div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <span class="project-badge">Live</span>
+                <h3>Credit Risk & Fraud Detection Platform</h3>
+                <p>Production-grade ML platform for real-time credit risk assessment and fraud detection. Built with ensemble ML models, SHAP explainability, fairness analysis under ECOA compliance, and a full monitoring system for drift detection.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">XGBoost</span>
+                    <span class="tech-tag">LightGBM</span>
+                    <span class="tech-tag">SHAP</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Docker</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://credit-risk-platform-aryxrhltgspmdvn4zav5vy.streamlit.app/" target="_blank">🔗 Live Demo</a>
+                    <a href="https://github.com/Valensaco/credit-risk-platform" target="_blank">📁 GitHub</a>
+                </div>
+            </div>
+            <div class="project-card coming-soon">
+                <span class="project-badge soon">In Progress</span>
+                <h3>FinSec — Financial Security Monitor</h3>
+                <p>A financial transaction security monitoring system built with a microservices architecture. Features a live threat map, transaction DNA breakdown, real-time alert feed, and behavioral analysis timeline.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">JWT</span>
+                </div>
+                <div class="project-links">
+                    <a href="#">🔗 Coming Soon</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <p class="section-title">Skills</p>
+        <div class="section-divider"></div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>Machine Learning</h4>
+                <ul class="skill-list">
+                    <li>XGBoost & LightGBM</li>
+                    <li>Scikit-learn</li>
+                    <li>SHAP Explainability</li>
+                    <li>Anomaly Detection</li>
+                    <li>Feature Engineering</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Engineering</h4>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>FastAPI & REST APIs</li>
+                    <li>Docker</li>
+                    <li>SQL & PostgreSQL</li>
+                    <li>Git & GitHub</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Cybersecurity</h4>
+                <ul class="skill-list">
+                    <li>Network Security (CCNA)</li>
+                    <li>AWS Cloud Security</li>
+                    <li>JWT Authentication</li>
+                    <li>Wireshark & Metasploit</li>
+                    <li>VPN & Network Protocols</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <p class="section-title">Contact</p>
+        <div class="section-divider"></div>
+        <div class="contact-links">
+            <a href="mailto:valucr1234@gmail.com" class="contact-link">📧 valucr1234@gmail.com</a>
+            <a href="https://www.linkedin.com/in/vrivadeo" target="_blank" class="contact-link">💼 LinkedIn</a>
+            <a href="https://github.com/Valensaco" target="_blank" class="contact-link">💻 GitHub</a>
+            <a href="tel:4692307520" class="contact-link">📞 (469) 230-7520</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Valentin Rivadeo © 2025 • Plano, TX</p>
+    </footer>
+
+</body>
+</html>
